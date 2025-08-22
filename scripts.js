@@ -3,21 +3,29 @@ document.addEventListener('DOMContentLoaded', () => {
   const agregarBtn = document.getElementById('AgregarBtn');
   const lista = document.getElementById('lista');
 
-  // Ayuda a detectar si el id no coincide
-  if (!agregarBtn) {
-    console.error('No se encontró #AgregarBtn. Revisa el id en el HTML.');
-    return;
-  }
-
   agregarBtn.addEventListener('click', () => {
     const texto = input.value.trim();
     if (!texto) return;
 
+    // Crear <li>
     const li = document.createElement('li');
-    li.textContent = texto;
+    li.textContent = texto + " ";
+
+    // Crear botón eliminar
+    const btnEliminar = document.createElement('button');
+    btnEliminar.textContent = "❌";
+    btnEliminar.style.marginLeft = "10px";
+    btnEliminar.addEventListener('click', () => {
+      li.remove(); // elimina solo este li
+    });
+
+    // Agregar botón al li y li a la lista
+    li.appendChild(btnEliminar);
     lista.appendChild(li);
 
+    // Limpiar input
     input.value = '';
     input.focus();
   });
 });
+
