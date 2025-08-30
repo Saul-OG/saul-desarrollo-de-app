@@ -1,13 +1,28 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [CommonModule, FormsModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
+
 export class AppComponent {
-  title = 'trabajo-a';
+  title = "Lista";
+  nuevoItem = "";         // lo que el usuario escribe
+  items: string[] = [];   // lista 
+
+  agregarItem() {
+    if (this.nuevoItem.trim() !== "") {
+      this.items.push(this.nuevoItem);
+      this.nuevoItem = ""; // limpiar input
+    }
+  }
+
+  eliminarItem(index: number) {
+    this.items.splice(index, 1);
+  }
 }
