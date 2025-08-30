@@ -1,0 +1,11 @@
+<h1>{{ title }}</h1>
+
+<input [(ngModel)]="nuevoItem" placeholder="Escribe algo">
+<button (click)="agregarItem()">Agregar</button>
+
+<ul>
+  <li *ngFor="let item of items; let i = index">
+    {{ item }}
+    <button (click)="eliminarItem(i)">borrar</button>
+  </li>
+</ul>
